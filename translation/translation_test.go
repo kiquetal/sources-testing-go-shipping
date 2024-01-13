@@ -17,7 +17,7 @@ func TestTranslation(t *testing.T) {
 	for _, tc := range tt {
 		res := Translation(tc.Word, tc.Language)
 		if res != tc.Translation {
-			t.Errorf("Translation(%s, %s) = want -> %s; obtained-> %s", tc.Word, tc.Language, res, tc.Translation)
+			t.Errorf("Translation(%s, %s) = obtained -> %s; wanted-> %s", tc.Word, tc.Language, res, tc.Translation)
 		}
 	}
 }
