@@ -1,0 +1,7 @@
+### SEND POST TO /hello
+POST http://localhost:8080/hello
+Content-Type: application/json
+
+{
+    "name": "John"
+}
