@@ -14,6 +14,7 @@ func main() {
 		func(w http.ResponseWriter, r *http.Request) {
 			enc := json.NewEncoder(w)
 			w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+
 			resp := Resp{
 				Language:    "English",
 				Translation: "Hello",
