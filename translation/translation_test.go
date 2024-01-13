@@ -10,9 +10,9 @@ func TestTranslation(t *testing.T) {
 		Language    string
 		Translation string
 	}{
-		{Word: "hello", Language: "english", Translation: "Hello"},
-		{Word: "hello", Language: "spanish", Translation: "Hola"},
-		{Word: "hello", Language: "german", Translation: "Hallo"},
+		{Word: "hello", Language: "english", Translation: "hello"},
+		{Word: "hello", Language: "spanish", Translation: "hola"},
+		{Word: "hello", Language: "german", Translation: "hallo"},
 	}
 	for _, tc := range tt {
 		res := Translation(tc.Word, tc.Language)

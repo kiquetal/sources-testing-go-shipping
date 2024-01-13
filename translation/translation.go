@@ -3,11 +3,11 @@ package translation
 func Translation(word string, language string) string {
 	switch language {
 	case "english":
-		return "Hello"
+		return "hello"
 	case "spanish":
-		return "Hola"
+		return "hola"
 	case "german":
-		return "Hallo"
+		return "hallo"
 	default:
 		return ""
 	}

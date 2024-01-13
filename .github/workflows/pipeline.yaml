@@ -4,6 +4,20 @@ on:
     branches:
       - main
 jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code into the Go module directory
+        uses: actions/checkout@v2
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.20
+      - name: Downloads
+        run: go get -t ./...
+      - name: Run Test
+        run: go test -v ./...
   build:
     name: Build APp
     runs-on: ubuntu-latest
