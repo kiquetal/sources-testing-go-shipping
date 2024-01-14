@@ -18,6 +18,19 @@ jobs:
         run: go get -t ./...
       - name: Run Test
         run: go test -v ./...
+      - name: Coverage Report
+        run: make coverage
+      - name: Generate Report
+        run: make report
+      - name: Copy Files
+        run: |
+          mkdir reports
+          cp cover.html reports/
+      - name: Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: reports
+          path: reports
   build:
     name: Build APp
     runs-on: ubuntu-latest
