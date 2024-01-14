@@ -78,4 +78,15 @@ jobs:
             draft: true
             prerelease: true
             token: ${{ secrets.GITHUB_TOKEN }}
-
+  vet:
+    name: Check formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code into the Go module directory
+        uses: actions/checkout@v2
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.20
+      - name: Check formatting
+        run: go vet ./...

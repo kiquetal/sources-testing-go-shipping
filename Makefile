@@ -10,3 +10,7 @@ coverage:
 	awk '{print  ((int($$3)> 80 )!=1) ? "Coverage is less than 80%": "Coverage is greater than 80%" }'
 report:
 	go tool cover -html=coverage.out -o cover.html
+check-format:
+	test -z $$(go fmt ./...)
+
+
