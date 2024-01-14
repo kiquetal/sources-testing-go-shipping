@@ -64,25 +64,15 @@ jobs:
           with:
             name: api
             path: artifacts
-        - name: Create Release
-          id: create_release
-          uses: actions/create-release@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ github.ref }}
-            release_name: Release ${{ github.ref }}
-            body: |
-              Still in experimentation phase
-            draft: true
-            prerelease: true
         - name: Upload Release
-          uses: actions/upload-release-asset@v1
+          uses: softprops/action-gh-release@v1
           env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
-                upload_url: ${{ steps.create_release.outputs.upload_url }}
-                asset_path: ./artifacts/api
-                asset_name: api
-                asset_content_type: application/octet-stream
-
+            files: artifacts/*
+            tag_name: v1.0.0
+            release_name: Release 1.0.0
+            body: |
+              Release 1.0.0
+            draft: false
+            prerelease: false
