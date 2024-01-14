@@ -5,3 +5,10 @@ Content-Type: application/json
 {
     "name": "John"
 }
+
+### SENT GET TO /hello use a query parameter called language
+GET http://localhost:8080/hello?language=spanish
+
+### SET GET TO /health endpoint
+
+GET http://localhost:8080/health
