@@ -22,3 +22,6 @@ install-go:
 init-go:
     echo 'export PATH=$$PATH:/usr/local/go/bin' >> $${HOME}/.bashrc
     echo 'export PATH=$$PATH:$${HOME}/go/bin' >> $${HOME}/.bashrc
+copy-hooks:
+	chmod +x scripts/hooks/*
+	cp scripts/hooks/* .git/hooks/
