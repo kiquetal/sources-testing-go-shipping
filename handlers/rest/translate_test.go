@@ -37,7 +37,8 @@ func TestTranslateApi(t *testing.T) {
 		},
 	}
 
-	handler := http.HandlerFunc(TranslateHandler)
+	underTest := NewTranslateHandler(NewStaticService())
+	handler := http.HandlerFunc(underTest.TranslateHandlerWeb)
 
 	for _, tc := range tt {
 		rr := httptest.NewRecorder()

@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ### SENT GET TO /hello use a query parameter called language
-GET http://localhost:8080/hello?language=spanish
+GET http://localhost:8080/translate/hello?language=spanish
 
 ### SET GET TO /health endpoint
 

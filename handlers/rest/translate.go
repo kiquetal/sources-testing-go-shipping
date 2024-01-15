@@ -15,7 +15,28 @@ type Resp struct {
 
 const defaultLanguage = "english"
 
-func TranslateHandler(w http.ResponseWriter, r *http.Request) {
+type Translator interface {
+	Translate(word string, language string) string
+}
+type TranslateHandler struct {
+	service Translator
+}
+
+func NewTranslateHandler(service Translator) *TranslateHandler {
+	return &TranslateHandler{service: service}
+}
+
+type StaticService struct {
+}
+
+func NewStaticService() *StaticService {
+	return &StaticService{}
+}
+func (s *StaticService) Translate(word string, language string) string {
+	return translation.Translation(word, language)
+}
+
+func (t *TranslateHandler) TranslateHandlerWeb(w http.ResponseWriter, r *http.Request) {
 
 	enc := json.NewEncoder(w)
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
