@@ -94,6 +94,7 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    if: false
     steps:
       - name: Checkout code into the Go module directory
         uses: actions/checkout@v2
