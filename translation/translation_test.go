@@ -1,23 +1,78 @@
-package translation
+package translation_test
 
 import (
+	"sources/m1/translation"
 	"testing"
 )
 
-func TestTranslation(t *testing.T) {
-	tt := []struct {
+func TestTranslate(t *testing.T) {
+	// Arrange
+	tt := []struct { // <1>
 		Word        string
 		Language    string
 		Translation string
 	}{
-		{Word: "hello", Language: "english", Translation: "hello"},
-		{Word: "hello", Language: "spanish", Translation: "hola"},
-		{Word: "hello", Language: "german", Translation: "hallo"},
+		{ //<2>
+			Word:        "hello",
+			Language:    "english",
+			Translation: "hello",
+		},
+		{
+			Word:        "hello",
+			Language:    "german",
+			Translation: "hallo",
+		},
+		{
+			Word:        "hello",
+			Language:    "finnish",
+			Translation: "hei",
+		},
+		{ // <1>
+			Word:        "bye",
+			Language:    "dutch",
+			Translation: "",
+		},
+		{
+			Word:        "hello",
+			Language:    "dutch",
+			Translation: "",
+		},
+		{ // <1>
+			Word:        "bye",
+			Language:    "german",
+			Translation: "",
+		},
+		{
+			Word:        "hello",
+			Language:    "German", // <1>
+			Translation: "hallo",
+		},
+		{
+			Word:        "Hello", // <2>
+			Language:    "german",
+			Translation: "hallo",
+		},
+		{
+			Word:        "hello ", // <3>
+			Language:    "german",
+			Translation: "hallo",
+		},
+		{
+			Word:        "hello",
+			Language:    "french",
+			Translation: "bonjour",
+		},
 	}
-	for _, tc := range tt {
-		res := Translation(tc.Word, tc.Language)
-		if res != tc.Translation {
-			t.Errorf("Translation(%s, %s) = obtained -> %s; wanted-> %s", tc.Word, tc.Language, res, tc.Translation)
+	underTest := translation.NewStaticService()
+	for _, test := range tt { // <3>
+		// Act
+		res := underTest.Translate(test.Word, test.Language) // <4>
+
+		// Assert
+		if res != test.Translation { // <5>
+			t.Errorf(
+				`expected "%s" to be "%s" from "%s" but received "%s"`,
+				test.Word, test.Language, test.Translation, res)
 		}
 	}
 }
