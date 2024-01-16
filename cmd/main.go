@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"sources/m1/handlers/rest"
+	"sources/m1/translation"
 )
 
 func main() {
@@ -16,9 +17,9 @@ func main() {
 		addr = ":8080"
 	}
 	mux := http.NewServeMux()
-	translationService := rest.NewStaticService()
+	translationService := translation.NewStaticService()
 	tanslateHandler := rest.NewTranslateHandler(translationService)
-	mux.HandleFunc("/translate/hello", tanslateHandler.TranslateHandlerWeb)
+	mux.HandleFunc("/translate/hello", tanslateHandler.TranslateHandler)
 	mux.HandleFunc("/health", rest.HealthCheck)
 	log.Printf("listening on %s", addr)
 	log.Fatal(http.ListenAndServe(addr, mux))
