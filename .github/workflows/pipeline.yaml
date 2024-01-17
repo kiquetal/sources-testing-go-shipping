@@ -75,7 +75,7 @@ jobs:
             files: artifacts/api
             tag_name: ${{ github.ref }}
             body: |
-              Release 2 new
+              Release
             draft: true
             prerelease: true
             token: ${{ secrets.GITHUB_TOKEN }}
